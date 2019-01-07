@@ -1,0 +1,45 @@
+<div >
+    <div style="width: 500px;height: 20px; margin-left: 400px ">
+        <form
+            [formGroup]="registerForm"
+            class="form-group row email"
+        >
+            <div >
+                <input
+                    type="text"
+                    [(ngModel)]="email"
+                    formControlName="email"
+                    class="form-control"
+                    placeholder="Email"
+                    style="width: 300px;"
+                > 
+                <div *ngFor="let validation of errorMessages.email">
+                    <div
+                        class="alert alert-danger"
+                        *ngIf="registerForm.get('email')
+          .hasError(validation.type) &&
+        (registerForm.get('email').dirty ||
+        registerForm.get('email').touched)
+      "
+                    >
+                        {{ validation.message }}
+                    </div>
+                </div>
+            </div>&nbsp;
+
+            <button
+            [disabled]="!registerForm.valid"
+            style="height: 38px;
+            width: 96px;"
+                type="button"
+                class="btn btn-primary"
+                (click)="onSubmit()"
+               
+            >
+                Submit
+            </button>
+        </form>
+
+    </div>
+
+</div>

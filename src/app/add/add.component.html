@@ -1,0 +1,136 @@
+<div
+    class="row"
+    style="margin-left: 550px; margin-top: 50px"
+>
+    <input
+        type="text"
+        [(ngModel)]=email
+        readonly
+        style="width: 300px;"
+    >
+    &nbsp;
+    <button
+        style="height: 38px; width: 96px;"
+        type="button"
+        class="btn btn-primary"
+        (click)="reset()"
+    >
+        <i
+            class="fa fa-refresh"
+            aria-hidden="true"
+        ></i>
+        &nbsp;Reset
+    </button>
+</div>
+<form [formGroup]="addDetailsForm" >
+    <div
+        class="form-row"
+        style="margin-left: 550px;margin-top: 50px"
+    >
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Title</label>
+            <input
+                type="text"
+                class="form-control"
+                style="width: 400px"
+                [(ngModel)]="Title"
+                formControlName="title"
+                placeholder="Title"
+                name="Title"
+            >
+            <div *ngFor="let validation of errorMessages.title">
+                <div
+                    class="alert alert-danger"
+                    *ngIf="addDetailsForm.get('title')
+      .hasError(validation.type) &&
+    (addDetailsForm.get('title').dirty ||
+    addDetailsForm.get('title').touched)
+  "
+                >
+                    {{ validation.message }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div
+        class="form-row"
+        style="margin-left: 550px"
+    >
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">ScheduledOn</label>
+
+            <input
+                class="form-control"
+                placeholder="ScheduledOn"
+                bsDatepicker
+                #dp="bsDatepicker"
+                [(ngModel)]="ScheduledOn"
+                style="width: 400px;"
+                formControlName="date"
+                [bsConfig]="{ dateInputFormat: 'DD MMMM, YYYY' }"
+            >
+            <div
+                *ngIf="addDetailsForm.controls['date'].invalid && (addDetailsForm.controls['date'].dirty || addDetailsForm.controls['date'].touched)"
+                class="alert alert-danger"
+            >
+                Please Select Date
+            </div>
+        </div>
+    </div>
+    <div
+        class="form-row"
+        style="margin-left: 550px"
+    >
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Description</label>
+            <input
+                type="text"
+                class="form-control"
+                style="width: 400px;height: 100px;"
+                [(ngModel)]="Description"
+                placeholder="Description"
+                name="Description"
+                formControlName="description"
+            >
+            <div *ngFor="let validation of errorMessages.description">
+                <div
+                    class="alert alert-danger"
+                    *ngIf="addDetailsForm.get('description')
+    .hasError(validation.type) &&
+  (addDetailsForm.get('description').dirty ||
+  addDetailsForm.get('description').touched)
+"
+                >
+                    {{ validation.message }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 770px; margin-top: 50px">
+        <button
+            class="btn btn-primary"
+            type="submit"
+            style="width: 85px;"
+            (click)="Cancel()"
+        >
+            Cancel
+        </button>
+        &nbsp;
+        <button
+        [disabled]="!addDetailsForm.valid"
+            class="btn btn-primary"
+            type="submit"
+            style="width: 85px;"
+            (click)="save()"
+        >
+            Save
+        </button>
+    </div>
+</form>
+
+<div *ngIf='show=="0"'>
+    <div *ngFor="let alert of alerts" style="width: 500px;height: 20px; margin-left: 500px ;margin-top: 50px">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" >{{ alert.msg }}</alert>
+      </div>
+  </div>

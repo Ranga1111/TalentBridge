@@ -1,0 +1,78 @@
+
+<div  class="row" style="margin-left: 550px; margin-top: 50px">
+  <input type="text" [(ngModel)]=email readonly  style="width: 300px;" > &nbsp;
+
+  <button style="height: 38px; width: 96px;" type="button" class="btn btn-primary" (click)="reset()">  <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Reset</button>
+</div>
+<div class="row" style="text-align: left ; margin-left: 900px; margin-top: 50px">
+  <input [(ngModel)]="searchText" placeholder="Search">&nbsp;
+    <select [(ngModel)]="selectedStatus" (ngModelChange)="onChange($event)" style="width: 200px">
+        <option *ngFor="let item of allStatus">{{item}}</option>
+       
+    </select>&nbsp;
+  <button type="button" class="btn btn-primary" (click)="add()" >ADD</button>
+</div>
+<div class="container">
+<table class="table" *ngIf='TasKList.length !=0' >
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">ScheduledOn</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of TasKList | filter : ['title']: searchText" >
+            <td>{{item.title}}</td>
+            <td>{{item.scheduledOn}}</td>
+            <td>{{item.createdOnDate}}</td>
+            <td>{{item.status | uppercase}}</td>
+            <td>
+           
+                
+                  <i class="fa fa-eye" aria-hidden="true" (click)="view(item)"  ></i> &nbsp;
+                  <i class="fa fa-trash" aria-hidden="true" (click)="openModal(item,template)" *ngIf='item.status == "done" || item.status == "pending"'></i>  &nbsp;
+                  <i class="fa fa-check-square" aria-hidden="true" (click)="openModaldone(item,templatedone)" *ngIf='item.status == "pending"'></i>
+          
+          </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div *ngIf='TasKList.length ==0 && Status=="open"' style="width: 500px;height: 20px; margin-left: 500px ;margin-top: 50px">
+  <alert type="danger">
+    <strong>No Associated Record Found</strong> 
+  </alert>
+</div>
+<div *ngIf='show=="0"'>
+  <div *ngFor="let alert of alerts" style="width: 500px;height: 20px; margin-left: 500px ;margin-top: 50px">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" >{{ alert.msg }}</alert>
+    </div>
+</div>
+
+  <ng-template #template style="width:500px;">
+        <div class="modal-header" style="background-color:#fff;width: 500px;">
+          <h4 class="modal-title pull-left">Delete Task</h4>
+       
+        </div>
+        <div class="modal-body" style="background-color:#fff;width: 500px">
+          <p>You are about to delete the task.Click <b>OK</b> to Confirm</p>
+          <button type="button" class="btn btn-primary" (click)="confirm()" style="margin-left: 245px;width: 100px;" >OK</button>&nbsp;
+          <button type="button" class="btn btn-primary" (click)="decline()" style="width: 100px; background-color: dimgray">Cancel</button>
+        </div>
+      </ng-template>
+
+      <ng-template #templatedone style="width:500px;">
+            <div class="modal-header" style="background-color:#fff;width: 500px;">
+              <h4 class="modal-title pull-left">Make as Done</h4>
+           
+            </div>
+            <div class="modal-body" style="background-color:#fff;width: 500px">
+              <p>You are about to mark the task as<b> Done</b>.Click <b>OK</b> to Confirm </p>
+              <button type="button" class="btn btn-primary" (click)="done()" style="margin-left: 245px;width: 100px;" >OK</button> &nbsp;
+              <button type="button" class="btn btn-primary" (click)="cancel()" style="width: 100px; background-color: dimgray">Cancel</button>
+            </div>
+          </ng-template>

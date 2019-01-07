@@ -1,0 +1,94 @@
+<div  class="row" style="margin-left: 550px; margin-top: 50px ; ">
+
+  <input type="text" [(ngModel)]=email readonly  style="width: 300px;" >
+
+  <button style="height: 38px; width: 96px;" type="button" class="btn btn-primary" (click)="reset()">Reset</button>
+</div>
+<div class="row" style="margin-left: 450px ;margin-top: 50px">
+  <b><span>TaskDetalis</span></b>
+  <button type="button" class="btn btn-primary" (click)="back()"style="margin-left: 450px" >BACK</button>
+</div>
+<div class="form-row" style="margin-left: 450px ;margin-top: 50px">
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">Title:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    <label>{{taskDetails.title}}</label>
+   
+  </div>
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">CreatedOn:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    {{taskDetails.createdOnDate}}
+   
+  </div>
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">ScheduledOn:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    {{taskDetails.scheduledOn}}
+   
+  </div>
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">Description:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    {{taskDetails.description}}
+   
+  </div>
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">Status:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    {{taskDetails.status}}
+   
+  </div>
+  <div class="form-group col-md-6">
+    <b><label for="inputEmail4">Marked Done On:</label></b>
+    
+  </div>
+  <div class="form-group col-md-6">
+    {{taskDetails.createdOnDate}}
+   
+  </div>
+</div>
+<!-- <div class="form-group">
+  <label for="inputAddress">Address</label>
+  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+</div>
+<div class="form-group">
+  <label for="inputAddress2">Address 2</label>
+  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputCity">City</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputState">State</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="inputZip">Zip</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div>
+</div>
+<div class="form-group">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Check me out
+    </label>
+  </div>
+</div> -->
+
